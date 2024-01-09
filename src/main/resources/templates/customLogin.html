@@ -33,35 +33,48 @@
     </div>
 </nav>
 
+
+
+
+
 <!-- Showcase-->
 <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
-    <div class="container">
-        <div class="d-sm-flex align-items-center justify-content-center mx-auto">
-            <div class="m-5">
-                <h1>Welcome to </h1>
-                <h1 class="text-warning">Working Place Booking</h1>
-                <p class="lead mt-5">Book your working place now!</p>
-                <a th:href="@{/booking}">
-                    <button class="btn btn-warning btn-lg">
-                        Book Now
-                    </button>
-                </a>
+
+    <div class="wrapper">
+
+        <div class="text-center mt-4 name">
+            Login
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="userName" id="userName" placeholder="Username">
             </div>
-            <!-- Added office image -->
-            <img class="img-fluid w-50 d-none d-md-block"
-                 style="max-width: 300px"
-                 th:src="@{/images/office2.png}"
-                 alt="Office image"
-            >
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password">
+            </div>
+            <button class="btn mt-3">Login</button>
+        </form>
+
+        <div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a href="#">Sign up</a>
         </div>
     </div>
+
     <div class="d-flex justify-content-center mt-5">
         <!-- Added schnellecke image -->
         <img class="img-fluid w-50 mt-5" style="max-width: 500px" th:src="@{/images/schnellecke.png}"
              alt="Office image">
     </div>
+
+
+
 </section>
-<!--test-->
+
+
+
+
 <!-- footer -->
 <footer class="bg-dark text-light text-center">
     <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center p-2">
@@ -83,6 +96,81 @@
         display: flex;
         min-height: 100vh;
         flex-direction: column;
+    }
+
+
+
+    .wrapper {
+        max-width: 350px;
+        min-height: 500px;
+        margin: 80px auto;
+        padding: 40px 30px 30px 30px;
+        background-color: #c8dac8;
+        border-radius: 15px;
+    }
+
+    .wrapper .name {
+        font-weight: 600;
+        font-size: 1.4rem;
+        letter-spacing: 1.3px;
+        padding-left: 10px;
+        color: #555;
+    }
+
+    .wrapper .form-field input {
+        width: 100%;
+        display: block;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.2rem;
+        color: #666;
+        padding: 10px 15px 10px 10px;
+        /* border: 1px solid red; */
+    }
+
+    .wrapper .form-field {
+        padding-left: 10px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    }
+
+    .wrapper .form-field .fas {
+        color: #555;
+    }
+
+    .wrapper .btn {
+        box-shadow: none;
+        width: 100%;
+        height: 40px;
+        background-color: #03A9F4;
+        color: #fff;
+        border-radius: 25px;
+        box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+        letter-spacing: 1.3px;
+    }
+
+    .wrapper .btn:hover {
+        background-color: #039BE5;
+    }
+
+    .wrapper a {
+        text-decoration: none;
+        font-size: 0.8rem;
+        color: #03A9F4;
+    }
+
+    .wrapper a:hover {
+        color: #039BE5;
+    }
+
+    @media(max-width: 380px) {
+        .wrapper {
+            margin: 30px 20px;
+            padding: 40px 15px 15px 15px;
+        }
     }
 </style>
 </html>
