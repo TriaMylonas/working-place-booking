@@ -1,10 +1,13 @@
 package dev.triamylo.workingplacebooking.model;
 
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Date;
 
@@ -12,11 +15,18 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Booking {
 
+    @Id()
+    @UuidGenerator
     private String id;
+
     private Date day;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private User whoBooked;
+    @ManyToOne(cascade = CascadeType.ALL)
     private WorkDesk workDesk;
 
     public Booking(Date day, User whoBooked, WorkDesk workDesk) {
@@ -34,4 +44,5 @@ public class Booking {
                 ", workDesk=" + workDesk +
                 '}';
     }
+
 }

@@ -1,9 +1,11 @@
 package dev.triamylo.workingplacebooking.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 
@@ -11,14 +13,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class User {
 
+    @Id()
+    @UuidGenerator
     private String id;
     private String userName;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Role> roles;
 
     public User(String userName,String password,String firstName,String lastName,String email){

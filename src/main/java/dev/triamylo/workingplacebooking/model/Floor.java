@@ -1,9 +1,8 @@
 package dev.triamylo.workingplacebooking.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 
@@ -11,11 +10,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Floor {
 
+    @Id()
+    @UuidGenerator
     private String id;
     private int number;
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Room> rooms;
 
     public Floor(int number, String description) {
@@ -26,6 +30,7 @@ public class Floor {
     public void addRoom(Room room) {
         rooms.add(room);
     }
+
     public void removeRoom(Room room) {
         rooms.remove(room);
     }
