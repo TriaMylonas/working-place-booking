@@ -1,4 +1,4 @@
-package dev.triamylo.workingplacebooking.otherClasses;
+package dev.triamylo.workingplacebooking.model.dto;
 
 import dev.triamylo.workingplacebooking.model.Booking;
 import dev.triamylo.workingplacebooking.model.WorkDesk;
