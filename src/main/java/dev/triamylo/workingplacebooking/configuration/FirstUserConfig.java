@@ -36,23 +36,25 @@ public class FirstUserConfig {
 //        if they are not exist we make them. If they exist we use them.
         transaction.execute(status -> {
 
-            Optional<Role> optionalRole = roleRepository.findByName("ADMIN");
-            if(optionalRole.isEmpty()){
+            Optional<Role> optionalAdminRole = roleRepository.findByName("ADMIN");
+
+            if(optionalAdminRole.isEmpty()){
                 Role adminRole = new Role("ADMIN", "administration role");
                 roleRepository.save(adminRole);
-                optionalRole = roleRepository.findByName("ADMIN");
+                optionalAdminRole = roleRepository.findByName("ADMIN");
             }
 
-            Optional<User> optionalUser = userRepository.findByUserName("adminUser");
-            if (optionalUser.isEmpty()) {
+            Optional<User> optionalAdminlUser = userRepository.findByUserName("adminUser");
+
+            if (optionalAdminlUser.isEmpty()) {
                 User adminUser = new User("adminUser", passwordEncoder.encode("admin"), "admin", "adminLastname", "admin@gmail.com");
-                adminUser.addRole(optionalRole.get());
                 userRepository.save(adminUser);
+                optionalAdminlUser = userRepository.findByUserName("adminUser");
             }
 
             // now that I have both I assign the role to the user and save him to the database
-            User adminUser = optionalUser.get();
-            Role adminRole = optionalRole.get();
+            User adminUser = optionalAdminlUser.get();
+            Role adminRole = optionalAdminRole.get();
 
             if(!adminUser.getRoles().contains(adminRole)){
                 adminUser.addRole(adminRole);
