@@ -53,31 +53,31 @@
         </dependency>
 
 <!--    SECURITY -->
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
-            <!-- Temporary explicit version to fix Thymeleaf bug -->
-            <version>3.1.1.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.thymeleaf.extras</groupId>-->
+<!--            <artifactId>thymeleaf-extras-springsecurity6</artifactId>-->
+<!--            &lt;!&ndash; Temporary explicit version to fix Thymeleaf bug &ndash;&gt;-->
+<!--            <version>3.1.1.RELEASE</version>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
-        <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-            <version>3.0.4.RELEASE</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.thymeleaf.extras</groupId>-->
+<!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
+<!--            <version>3.0.4.RELEASE</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
 
 
