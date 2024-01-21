@@ -16,4 +16,8 @@ public class StartingController {
 
     @GetMapping("/home")
     public String home(){return "index";}
+
+//    I need it only for developing reasons to create the html side
+    @GetMapping("/addUser")
+    public String userFormula(){return "userFormula";}
 }
