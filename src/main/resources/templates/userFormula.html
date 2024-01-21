@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>WPB</title>
+</head>
+<body>
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-success bg-success py-2">
+    <div class="container-fluid">
+        <a class="navbar-brand">Working Place Booking</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Showcase-->
+<section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
+    <div class="container">
+        <!--    1. ROW subtitle -->
+        <div class="row justify-content-center h2 mt-3 mb-4 text-warning">
+            Neue Nutzer Ausfüllen
+        </div>
+        <!--    2.ROW new user formula -->
+        <div class="row justify-content-evenly">
+
+            <form class="col-md-7 col-lg-4" th:action="@{/user/post}" th:object="${user}" th:method="post">
+
+                <!--    das in sehr interessant!-->
+<!--                <input type="hidden" th:field="${user.uuid}" th:id="uuid"/>-->
+
+                <!-- 1. field username -->
+                <div class="mb-3 d-md-flex flex-md-column align-items-md-center">
+                    <label for="username"
+                           class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                           style="--bs-bg-opacity:.5"
+                           text="Username">Username
+                    </label>
+                    <input type="text"
+                           field="${user.userName}"
+                           class="form-control border border-secondary rounded"
+                           id="username"
+                           placeholder="Username"
+                    />
+                </div>
+
+
+                <!--                2. field first name-->
+                <div class="mb-3">
+                    <label for="firstName"
+                           class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                           style="--bs-bg-opacity:.5"
+                           text="First Name">First Name
+                    </label>
+                    <input type="text"
+                           field="${user.firstName}"
+                           class="form-control border border-secondary rounded"
+                           id="firstName"
+                           placeholder="First Name"
+                    />
+                </div>
+
+
+                <!-- 3. field the lastname -->
+                <div class="mb-3">
+                    <label for="lastName"
+                           class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                           style="--bs-bg-opacity:.5"
+                           text="Last Name">Last Name
+                    </label>
+                    <input type="text"
+                           field="${user.lastName}"
+                           class="form-control border border-secondary rounded"
+                           id="lastName"
+                           placeholder="Last Name"
+                    />
+                </div>
+
+                <!-- 4. field for the E-Mail-->
+                <div class="mb-3">
+                    <label for="email"
+                           class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                           style="--bs-bg-opacity:.5"
+                           text="E-Mail">E-Mail
+                    </label>
+                    <input type="email"
+                           field="${user.email}"
+                           class="form-control border border-secondary rounded"
+                           id="email"
+                           placeholder="E-Mail"
+                    />
+                </div>
+
+                <!-- 5. field for the password -->
+                <div class="mb-3">
+                    <label for="password"
+                           class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                           style="--bs-bg-opacity:.5"
+                           text="Password">Password
+                    </label>
+                    <input type="password"
+                           field="${user.password}"
+                           class="form-control border border-secondary rounded"
+                           id="password"
+                           placeholder="Password"
+                    />
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary" id="submitButton">
+                    Submit
+                </button>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Added schnellecke image on the button before footer -->
+<section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
+    <div class="d-flex justify-content-center mt-5">
+        <img class="img-fluid w-50 mt-5" style="max-width: 500px" th:src="@{/images/schnellecke.png}"
+             alt="Office image">
+    </div>
+</section>
+
+<!-- footer -->
+<footer class="bg-dark text-light text-center">
+    <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center p-2">
+        <p class="m-0 myFooterText"><span>Designed & Built by <b>Triantafyllos Mylonas</b></span></p>
+        <p class="m-0 myFooterText">&copy; 2022 Working Place Booking. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+</script>
+</body>
+<style>
+    .myFooterText {
+        font-size: 0.75rem; /* You can adjust this size as per your requirement. */
+    }
+
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+</html>
