@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -23,19 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link " th:href="@{/home}">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " th:href="@{/login}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " th:href="@{/user/create}">Add-user</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/list}">User-list</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/role/create}">Add-role</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/role/list}">Role-list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
@@ -48,30 +39,60 @@
 
 
 <main>
-    <!-- Showcase-->
+    <!-- user table-->
     <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
-        <div class="container">
-            <div class="d-sm-flex align-items-center justify-content-center mx-auto">
-                <div class="m-5">
-                    <h1>Welcome to </h1>
-                    <h1 class="text-warning">Working Place Booking</h1>
-                    <p class="lead mt-5">Book your working place now!</p>
-                    <a th:href="@{/booking}">
-                        <button class="btn btn-warning btn-lg">
-                            Book Now
+
+        <h2 class="row justify-content-center h2 mt-3 mb-4 text-warning">
+            The list with the roles
+        </h2>
+
+        <table class="table table-header table-striped table-bordered text-center">
+            <thead class="table table-group-divider">
+            <tr>
+                <th scope="col" class="col-md-1">Index Nr</th>
+                <th scope="col" class="col-md-3">Name</th>
+                <th scope="col" class="col-md-4">Description</th>
+                <th colspan="2" class="col-md-2">Options</th>
+            </tr>
+            </thead>
+
+            <tbody class="table-group-divider ">
+            <tr th:each="role  ,status:${roles}">
+                <td th:text="${status.index + 1}" ></td>
+                <td th:text="${role.name}"></td>
+                <td th:text="${role.description}"></td>
+
+                <td class="table-cell">
+                    <a href="#">
+                        <!--    Button visible only to authorized users (ROLE_ADMIN) only they can delete someone.-->
+                        <button type="button" class="btn btn-sm btn-outline-danger me-2">
+                            Löschen
                         </button>
                     </a>
-                </div>
-                <!-- Added office image -->
-                <img class="img-fluid w-50 d-none d-md-block"
-                     style="max-width: 300px"
-                     th:src="@{/images/office2.png}"
-                     alt="Office image"
-                >
-            </div>
-        </div>
+
+                    <a href="#">
+                        <button type="button" class="btn btn-sm btn-outline-primary ">
+                            Ändern
+                        </button>
+                    </a>
+                </td>
+            </tbody>
+
+            <!-- this is a footer, and he will go at the end of my table -->
+            <tfoot class="table-group-divider">
+            <tr>
+                <!-- colspan is to expand this cell in 4 others cells-->
+                <td colspan="3" class="text-right text-bold">The number of the roles is:</td>
+                <!-- this is a value that I take from the controller. Here I need the size of the user list.-->
+                <td th:text="${roles.size()}"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <!-- Added schnellecke image on the button before footer -->
+    <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
         <div class="d-flex justify-content-center mt-5">
-            <!-- Added schnellecke image -->
             <img class="img-fluid w-50 mt-5" style="max-width: 500px" th:src="@{/images/schnellecke.png}"
                  alt="Office image">
         </div>
@@ -82,7 +103,6 @@
 <!-- this is to full the gab between the main page and the footer -->
 <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
 </section>
-
 
 <!-- footer -->
 <footer class="bg-dark text-light text-center">

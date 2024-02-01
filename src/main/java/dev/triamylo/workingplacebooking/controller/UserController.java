@@ -31,7 +31,7 @@ public class UserController {
         return "user/userFormula";
     }
 
-    @PostMapping("/user/add")
+    @PostMapping("/user/create")
     public String addUser(@ModelAttribute("user") User user){
         userService.add(user);
         return "redirect:/user/list";

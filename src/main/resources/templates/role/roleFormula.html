@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -23,19 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link " th:href="@{/home}">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " th:href="@{/login}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " th:href="@{/user/create}">Add-user</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/list}">User-list</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/role/create}">Add-role</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/role/list}">Role-list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
@@ -51,27 +42,62 @@
     <!-- Showcase-->
     <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
         <div class="container">
-            <div class="d-sm-flex align-items-center justify-content-center mx-auto">
-                <div class="m-5">
-                    <h1>Welcome to </h1>
-                    <h1 class="text-warning">Working Place Booking</h1>
-                    <p class="lead mt-5">Book your working place now!</p>
-                    <a th:href="@{/booking}">
-                        <button class="btn btn-warning btn-lg">
-                            Book Now
-                        </button>
-                    </a>
-                </div>
-                <!-- Added office image -->
-                <img class="img-fluid w-50 d-none d-md-block"
-                     style="max-width: 300px"
-                     th:src="@{/images/office2.png}"
-                     alt="Office image"
-                >
+            <!--    1. ROW subtitle -->
+            <div class="row justify-content-center h2 mt-3 mb-4 text-warning">
+                Add New Role
+            </div>
+            <!--    2.ROW new role formula -->
+            <div class="row justify-content-evenly">
+
+                <form class="col-md-7 col-lg-4" th:action="@{/role/save}" th:object="${role}" th:method="post">
+
+                    <!--   this is interesting !-->
+                    <input type="hidden" th:field="${role.id}" th:id="id"/>
+
+                    <!-- 1. field name -->
+                    <div class="mb-3 d-md-flex flex-md-column align-items-md-center">
+                        <label for="roleName"
+                               class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                               style="--bs-bg-opacity:.5">
+                            name
+                        </label>
+                        <input type="text"
+                               th:field="${role.name}"
+                               class="form-control border border-secondary rounded"
+                               id="roleName"
+                               placeholder="role name"
+                        />
+                    </div>
+
+
+                    <!-- 2. field role description-->
+                    <div class="mb-3">
+                        <label for="roleDescription"
+                               class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
+                               style="--bs-bg-opacity:.5">
+                            role description
+                        </label>
+                        <input type="text"
+                               th:field="${role.description}"
+                               class="form-control border border-secondary rounded"
+                               id="roleDescription"
+                               placeholder="role description"
+                        />
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" id="submitButton">
+                        Submit
+                    </button>
+
+                </form>
             </div>
         </div>
+    </section>
+
+    <!-- Added schnellecke image on the button before footer -->
+    <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
         <div class="d-flex justify-content-center mt-5">
-            <!-- Added schnellecke image -->
             <img class="img-fluid w-50 mt-5" style="max-width: 500px" th:src="@{/images/schnellecke.png}"
                  alt="Office image">
         </div>

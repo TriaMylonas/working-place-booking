@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class StartingController {
+
     @GetMapping(value="/booking")
     public String booking() {
         return "bookingDesk";
