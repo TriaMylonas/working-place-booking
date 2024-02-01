@@ -1,4 +1,4 @@
-package dev.triamylo.workingplacebooking.service;
+package dev.triamylo.workingplacebooking.service.workDesk;
 
 import dev.triamylo.workingplacebooking.model.WorkDesk;
 import dev.triamylo.workingplacebooking.repository.WorkDeskRepository;

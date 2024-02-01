@@ -121,9 +121,9 @@
                         <label for="password"
                                class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
                                style="--bs-bg-opacity:.5"
-                               text="Password">Password
+                               th:text="${user.getPassword()}">
                         </label>
-                        <input type="password"
+                        <input type="text"
                                th:field="${user.password}"
                                class="form-control border border-secondary rounded"
                                id="password"

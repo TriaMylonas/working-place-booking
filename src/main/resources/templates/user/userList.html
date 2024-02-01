@@ -70,16 +70,16 @@
                 <td th:text="${user.password}"></td>
 
                 <td class="table-cell">
-                    <a href="#">
+                    <a th:href="@{'/user/delete/' + ${user.getId()}}">
                         <!--    Button visible only to authorized users (ROLE_ADMIN) only they can delete someone.-->
                         <button type="button" class="btn btn-sm btn-outline-danger me-2">
-                            Löschen
+                            Delete
                         </button>
                     </a>
 
-                    <a href="#">
+                    <a th:href="@{'/user/update/' + ${user.getId()}}">
                         <button type="button" class="btn btn-sm btn-outline-primary ">
-                            Ändern
+                            Edit
                         </button>
                     </a>
                 </td>

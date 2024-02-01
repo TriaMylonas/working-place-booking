@@ -3,10 +3,12 @@ package dev.triamylo.workingplacebooking.controller;
 import dev.triamylo.workingplacebooking.model.Role;
 import dev.triamylo.workingplacebooking.service.role.RoleService;
 import dev.triamylo.workingplacebooking.service.role.RoleServiceImpl;
+import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -38,7 +40,30 @@ public class RoleController {
 
     @PostMapping("/role/save")
     public String saveRole(@ModelAttribute("role") Role role) {
-        roleService.add(role);
+
+        //if it's a new role
+        if(role.getId() == null || role.getId().isEmpty()){
+            roleService.add(role);
+        }
+        //if it's existing we make update
+        else {
+            roleService.update(role);
+        }
+
         return "redirect:/role/list";
     }
+
+    @GetMapping("/role/delete/{id}")
+    public String deleteRole(@PathVariable String id){
+        roleService.delete(roleService.get(id));
+        return "redirect:/role/list";
+    }
+
+    @GetMapping("/role/update/{id}")
+    public String updateRole(@PathVariable String id, Model model){
+        Role role = roleService.get(id);
+        model.addAttribute("role", role);
+        return "role/roleFormula";
+    }
+
 }

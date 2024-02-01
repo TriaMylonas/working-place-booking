@@ -2,6 +2,7 @@ package dev.triamylo.workingplacebooking.service;
 
 import dev.triamylo.workingplacebooking.model.Floor;
 import dev.triamylo.workingplacebooking.repository.FloorRepository;
+import dev.triamylo.workingplacebooking.service.floor.FloorServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

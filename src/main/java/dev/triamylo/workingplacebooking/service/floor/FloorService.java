@@ -1,4 +1,4 @@
-package dev.triamylo.workingplacebooking.service;
+package dev.triamylo.workingplacebooking.service.floor;
 
 import dev.triamylo.workingplacebooking.model.Floor;
 

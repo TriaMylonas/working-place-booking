@@ -63,16 +63,15 @@
                 <td th:text="${role.description}"></td>
 
                 <td class="table-cell">
-                    <a href="#">
-                        <!--    Button visible only to authorized users (ROLE_ADMIN) only they can delete someone.-->
+                    <a th:href="@{'/role/delete/' + ${role.getId()} }">
                         <button type="button" class="btn btn-sm btn-outline-danger me-2">
-                            Löschen
+                            Delete
                         </button>
                     </a>
 
-                    <a href="#">
+                    <a th:href="@{'/role/update/' + ${role.getId()} }">
                         <button type="button" class="btn btn-sm btn-outline-primary ">
-                            Ändern
+                            Edit
                         </button>
                     </a>
                 </td>
