@@ -1,4 +1,4 @@
-package dev.triamylo.workingplacebooking.service;
+package dev.triamylo.workingplacebooking.service.user;
 
 import dev.triamylo.workingplacebooking.model.User;
 

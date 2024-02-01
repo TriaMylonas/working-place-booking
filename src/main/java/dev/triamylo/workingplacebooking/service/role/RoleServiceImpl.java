@@ -1,7 +1,8 @@
-package dev.triamylo.workingplacebooking.service;
+package dev.triamylo.workingplacebooking.service.role;
 
 import dev.triamylo.workingplacebooking.model.Role;
 import dev.triamylo.workingplacebooking.repository.RoleRepository;
+import dev.triamylo.workingplacebooking.service.role.RoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

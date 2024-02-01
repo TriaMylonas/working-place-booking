@@ -1,7 +1,8 @@
-package dev.triamylo.workingplacebooking.service;
+package dev.triamylo.workingplacebooking.service.user;
 
 import dev.triamylo.workingplacebooking.model.User;
 import dev.triamylo.workingplacebooking.repository.UserRepository;
+import dev.triamylo.workingplacebooking.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
