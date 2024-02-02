@@ -141,6 +141,63 @@
         </div>
     </section>
 
+
+    <!--   Role Formula  -->
+    <div class=" row justify-content-center" th:if="${user.id != null || !user.id.isEmpty()}">
+
+        <!-- form -->
+        <form class="row justify-content-center my-5" th:action="@{'/user/' + ${user.id} + '/addRole'}" method="post">
+            <!-- DropDown form to assign the role-->
+            <label class="row justify-content-around">
+                <select class="col-4 border border-secondary rounded" th:name="roleId">
+                    <!-- add a default option-->
+                    <option value="">Select a Role</option>
+                    <!-- Iterate over the roles and generate options -->
+                    <option th:each="role:${notAssignRoles}"
+                            th:value="${role.uuid}"
+                            th:text="${role.roleName}">
+                    </option>
+                </select>
+
+                <button type="submit"
+                        class="col-2 border border-secondary rounded btn btn-primary">
+                    Add
+                </button>
+            </label>
+        </form>
+
+        <!-- Table -->
+        <div class="col-10">
+            <table class="table table-striped table-bordered text-center mt-5">
+                <!-- Table with roles -->
+                <thead class="table-group-divider">
+                <tr class="text-center">
+                    <th scope="col">Nr</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+
+                <tbody class="table-group-divider ">
+                <tr th:each="role,status:${user.getRoles()}">
+                    <td th:text="${status.index + 1}">Nr.</td>
+                    <td th:text="${role.roleName}">Name</td>
+                    <td th:text="${role.roleDescription}">Description</td>
+                    <td style="width: 10%;">
+                        <!-- Add a form for each delete/change request in our server, with post request the parameters is not in the url  -->
+                        <form th:action="@{'/user/'+${user.id}+'/deleteRole/'+ ${role.id}}" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
     <!-- Added schnellecke image on the button before footer -->
     <section class="bg-success text-center text-light opacity-75 p-5 flex-grow-1">
         <div class="d-flex justify-content-center mt-5">

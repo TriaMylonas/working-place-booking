@@ -1,23 +1,26 @@
 package dev.triamylo.workingplacebooking.controller;
 
+import dev.triamylo.workingplacebooking.model.Role;
 import dev.triamylo.workingplacebooking.model.User;
+import dev.triamylo.workingplacebooking.service.role.RoleService;
 import dev.triamylo.workingplacebooking.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService)
+    {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
@@ -64,8 +67,13 @@ public class UserController {
         User user = userService.get(id);
 
         if (user != null) {
+
+            List<Role> notAssignRoles = rolesThatTheUserDoNotHave(user);
+
             model.addAttribute("user", user);
+            model.addAttribute("notAssignRoles",notAssignRoles);
             return "user/userFormula";
+
         } else
             return "redirect:/user/list";
     }
@@ -76,6 +84,31 @@ public class UserController {
         // so that he will be erased from the DB.
         userService.delete(userService.get(id));
         return "redirect:/user/list";
+    }
+
+    @PostMapping("/user/{id}/addRole")
+    public String addUserRole(@PathVariable String id, @RequestParam String roleId){
+        //get the user from the DB
+        User user = userService.get(id);
+        //get the selected role
+        Role role = roleService.get(roleId);
+        // add the role to the user
+        user.addRole(role);
+        //update the user with the new role
+        userService.update(user);
+
+        //redirect to the user update page
+        return "redirect:/user/update/" + user.getId();
+    }
+
+
+
+    private List<Role> rolesThatTheUserDoNotHave(User user) {
+        List<Role> allAvailableRoles = roleService.list();
+        List<Role> userRoles = user.getRoles();
+
+        return allAvailableRoles.stream().filter(role -> !userRoles.contains(role))
+                .collect(Collectors.toList());
     }
 
 }

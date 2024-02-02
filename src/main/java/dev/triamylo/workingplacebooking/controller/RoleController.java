@@ -1,9 +1,7 @@
 package dev.triamylo.workingplacebooking.controller;
 
 import dev.triamylo.workingplacebooking.model.Role;
-import dev.triamylo.workingplacebooking.service.role.RoleService;
 import dev.triamylo.workingplacebooking.service.role.RoleServiceImpl;
-import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +15,8 @@ import java.util.List;
 public class RoleController {
 
     private final RoleServiceImpl roleService;
-    public RoleController(RoleServiceImpl roleService){
+
+    public RoleController(RoleServiceImpl roleService) {
         this.roleService = roleService;
     }
 
@@ -30,7 +29,7 @@ public class RoleController {
     }
 
     @GetMapping("/role/create")
-    public String createRoleFormula(Model model){
+    public String createRoleFormula(Model model) {
         // initialise a Role to give in the template
         Role role = new Role();
         //pass the role in the model and from that to the template
@@ -42,7 +41,7 @@ public class RoleController {
     public String saveRole(@ModelAttribute("role") Role role) {
 
         //if it's a new role
-        if(role.getId() == null || role.getId().isEmpty()){
+        if (role.getId() == null || role.getId().isEmpty()) {
             roleService.add(role);
         }
         //if it's existing we make update
@@ -54,13 +53,13 @@ public class RoleController {
     }
 
     @GetMapping("/role/delete/{id}")
-    public String deleteRole(@PathVariable String id){
+    public String deleteRole(@PathVariable String id) {
         roleService.delete(roleService.get(id));
         return "redirect:/role/list";
     }
 
     @GetMapping("/role/update/{id}")
-    public String updateRole(@PathVariable String id, Model model){
+    public String updateRole(@PathVariable String id, Model model) {
         Role role = roleService.get(id);
         model.addAttribute("role", role);
         return "role/roleFormula";
