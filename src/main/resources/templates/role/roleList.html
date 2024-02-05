@@ -26,7 +26,10 @@
                         <a class="nav-link " th:href="@{/home}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " th:href="@{/login}">Login</a>
+                        <a class="nav-link " th:href="@{/user/create}">Add-user</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/list}">User-list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
@@ -87,6 +90,10 @@
             </tr>
             </tfoot>
         </table>
+
+        <button class="col-2 my-5 border border-secondary rounded btn btn-primary">
+            <a class="nav-link" th:href="@{/role/create}">Add new Role</a>
+        </button>
     </section>
 
     <!-- Added schnellecke image on the button before footer -->
