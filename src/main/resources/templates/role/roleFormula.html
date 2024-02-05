@@ -85,11 +85,22 @@
                         />
                     </div>
 
+                    <!-- The Button at the end -->
+                    <div>
+                        <!--Submit Button-->
+                        <button type="submit" class="btn btn-primary mx-3" id="submitButton">
+                            Submit
+                        </button>
 
-                    <button type="submit" class="btn btn-primary" id="submitButton">
-                        Submit
-                    </button>
-
+                        <!-- Cancel Button -->
+                        <span>
+                            <a th:href="@{/role/list}">
+                                <button type="button" class="btn btn-danger mx-3">
+                                    Cancel
+                                </button>
+                            </a>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
