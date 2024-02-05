@@ -78,14 +78,34 @@ public class UserController {
             return "redirect:/user/list";
     }
 
+    /**
+     * Deletes a user from the database.
+     *
+     * @param id    the id of the user to be deleted
+     * @return a string representing the redirection URL to the user list page
+     */
     @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable String id, Model model) {
-        // I find and take the user from the DB, and then I give it to delete method,
-        // so that he will be erased from the DB.
+    public String deleteUser(@PathVariable String id) {
+        // I find and take the user from the DB,
+        User user = userService.get(id);
+        //I must delete the roles from him
+        for(Role role : user.getRoles()){
+            user.removeRole(role);
+        }
+        // I must update him in the DB.
+        userService.update(user);
+        // I delete him from the DB now without roles.
         userService.delete(userService.get(id));
         return "redirect:/user/list";
     }
 
+    /**
+     * Adds a role to a user.
+     *
+     * @param id     the id of the user
+     * @param roleId the id of the role to be added
+     * @return a string representing the redirection URL to the user update page
+     */
     @PostMapping("/user/{id}/addRole")
     public String addUserRole(@PathVariable String id, @RequestParam String roleId){
         //get the user from the DB
@@ -103,6 +123,12 @@ public class UserController {
 
 
 
+    /**
+     * Returns a list of roles that the given user does not have.
+     *
+     * @param user the user for whom to find roles that are not assigned
+     * @return a list of roles that the user does not have
+     */
     private List<Role> rolesThatTheUserDoNotHave(User user) {
         List<Role> allAvailableRoles = roleService.list();
         List<Role> userRoles = user.getRoles();
