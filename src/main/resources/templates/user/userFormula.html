@@ -124,7 +124,8 @@
                         <label for="password"
                                class="form-label pt-1 pb-1 px-3 bg-warning  border border-secondary rounded"
                                style="--bs-bg-opacity:.5"
-                               th:text="${user.getPassword()}">
+                               th:text="Password">
+                            Password
                         </label>
                         <input type="text"
                                th:field="${user.password}"
@@ -134,10 +135,23 @@
                         />
                     </div>
 
+                    <!-- The Button at the end -->
+                    <div>
+                        <!--Submit Button-->
+                        <button type="submit" class="btn btn-primary mx-3" id="submitButton">
+                            Submit
+                        </button>
 
-                    <button type="submit" class="btn btn-primary" id="submitButton">
-                        Submit
-                    </button>
+                        <!-- Cancel Button -->
+                        <span>
+                            <a th:href="@{/user/list}">
+                                <button type="button" class="btn btn-danger mx-3">
+                                    Cancel
+                                </button>
+                            </a>
+                        </span>
+                    </div>
+
 
                 </form>
             </div>
@@ -208,6 +222,8 @@
                  alt="Office image">
         </div>
     </section>
+
+
 </main>
 
 
