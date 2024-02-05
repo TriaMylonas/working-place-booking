@@ -143,7 +143,7 @@
 
 
     <!--   Role Formula  -->
-    <div class=" row justify-content-center" th:if="${user.id != null || !user.id.isEmpty()}">
+    <div class=" row justify-content-center" th:if="${user.id != null}">
 
         <!-- form -->
         <form class="row justify-content-center my-5" th:action="@{'/user/' + ${user.id} + '/addRole'}" method="post">
@@ -154,8 +154,8 @@
                     <option value="">Select a Role</option>
                     <!-- Iterate over the roles and generate options -->
                     <option th:each="role:${notAssignRoles}"
-                            th:value="${role.uuid}"
-                            th:text="${role.roleName}">
+                            th:value="${role.id}"
+                            th:text="${role.name}">
                     </option>
                 </select>
 
@@ -182,8 +182,8 @@
                 <tbody class="table-group-divider ">
                 <tr th:each="role,status:${user.getRoles()}">
                     <td th:text="${status.index + 1}">Nr.</td>
-                    <td th:text="${role.roleName}">Name</td>
-                    <td th:text="${role.roleDescription}">Description</td>
+                    <td th:text="${role.name}">Name</td>
+                    <td th:text="${role.description}">Description</td>
                     <td style="width: 10%;">
                         <!-- Add a form for each delete/change request in our server, with post request the parameters is not in the url  -->
                         <form th:action="@{'/user/'+${user.id}+'/deleteRole/'+ ${role.id}}" method="post">
