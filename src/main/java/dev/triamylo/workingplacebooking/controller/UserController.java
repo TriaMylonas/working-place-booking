@@ -64,6 +64,7 @@ public class UserController {
     public String updateUserFormula(Model model, @PathVariable String id) {
 
         //initialise the user with this id to send him in the template
+        //here I don't user Optional, because I return null if there is no User with that id
         User user = userService.get(id);
 
         if (user != null) {

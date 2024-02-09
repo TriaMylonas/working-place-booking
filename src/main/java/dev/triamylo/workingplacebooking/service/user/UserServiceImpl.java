@@ -2,7 +2,6 @@ package dev.triamylo.workingplacebooking.service.user;
 
 import dev.triamylo.workingplacebooking.model.User;
 import dev.triamylo.workingplacebooking.repository.UserRepository;
-import dev.triamylo.workingplacebooking.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +11,14 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    public UserServiceImpl(UserRepository userRepository){
+//    TODO add the Encoder, and in the constructor
+//    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+
     }
+
     @Override
     public List<User> list() {
         return userRepository.findAll();
@@ -27,34 +31,42 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void add(User user) {
+//        TODO here I must hash the password first and then save it to DB
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
-    public boolean delete(User user) {
-        Optional<User> existingUser = userRepository.findById(user.getId());
-
-        if (existingUser.isPresent()) {
-            userRepository.delete(user);
-            return true;
-        }
-        return false;
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 
     @Override
-    public boolean update(User user) {
-        Optional<User> existingUser = userRepository.findById(user.getId());
+    public void update(User user) {
 
-        if(existingUser.isPresent()){
-            User updatedUser = existingUser.get();
-            updatedUser.setUserName(user.getUserName());
-            updatedUser.setPassword(user.getPassword());
-            updatedUser.setFirstName(user.getFirstName());
-            updatedUser.setLastName(user.getLastName());
-            updatedUser.setEmail(user.getEmail());
-            userRepository.save(updatedUser);
+        User existingUser = userRepository.findById(user.getId()).orElse(null);
+
+        if (existingUser == null) {
+            return;
         }
 
-        return false;
+        existingUser.setUserName(user.getUserName());
+        existingUser.setPassword(user.getPassword());
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setEmail(user.getEmail());
+//        TODO here to add the password and encode
+//        if (aUser.getPassword() != null && !aUser.getPassword().isEmpty()) {
+//            existingUser.setPassword(passwordEncoder.encode(aUser.getPassword()));
+//        }
+//
+        userRepository.save(existingUser);
     }
+
+
+    public Optional<User> findByUserName(String name) {
+        return userRepository.findByUserName(name);
+    }
+
+
 }
